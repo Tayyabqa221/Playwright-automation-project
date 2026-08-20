@@ -1,0 +1,1 @@
+npx lint-staged --config src/linters/lintstagedrc.json src

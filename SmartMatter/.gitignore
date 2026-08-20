@@ -1,0 +1,14 @@
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+package-lock.json
+/src/config/
+allure-report/
+allure-results/
+test-results/
+src/config/
+src/cookies
+.eslintcache
+*.log
+downloads/

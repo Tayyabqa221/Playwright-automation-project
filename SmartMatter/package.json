@@ -1,0 +1,63 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "Playwright framework for the automation",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky",
+    "pretest": "npx eslint --config src/linters/.eslintrc.js src --fix && prettier --config src/linters/prettierrc.yml src --write",
+    "test:dev": "cross-env NODE_ENV=dev npx playwright test",
+    "clean:allure": "rimraf allure-results",
+    "test:dev:clean": "npm run clean:allure && cross-env NODE_ENV=dev npx playwright test || echo 'Test run has failures. Check the report for details.'",
+    "allure:copy:history": "copyfiles -u 1 allure-report/history/** allure-results",
+    "allure:generate": "npm run allure:copy:history && allure generate allure-results --clean",
+    "allure:open": "allure open",
+    "test:dev:allure": "npm run pretest && npm-run-all --continue-on-error -s test:dev:clean allure:generate",
+    "test:dev:allure:open": "npm run pretest && npm-run-all --continue-on-error -s test:dev:clean allure:generate allure:open"
+  },
+  "lint-staged": {
+    "*.ts": "eslint"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.43.1",
+    "@stylistic/eslint-plugin": "^2.6.0",
+    "@stylistic/eslint-plugin-ts": "^2.4.0",
+    "@types/node": "^20.14.8",
+    "@types/pdf-parse": "^1.1.4",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "@xray-app/playwright-junit-reporter": "^0.6.0",
+    "allure-commandline": "^2.29.0",
+    "allure-playwright": "^2.15.1",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.47.0",
+    "eslint-plugin-jsdoc": "^48.10.2",
+    "eslint-plugin-perfectionist": "^3.0.0",
+    "eslint-plugin-playwright": "^0.15.3",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-tsdoc": "^0.3.0",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.7",
+    "npm-run-all": "^4.1.5",
+    "playwright": "^1.43.1",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "typescript": "5.3",
+    "typescript-eslint": "^7.18.0"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.5.2",
+    "@faker-js/faker": "^9.0.0",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "mailosaur": "^8.7.0",
+    "pdf-parse": "^1.1.1",
+    "uuid": "^11.0.3"
+  },
+  "keywords": [],
+  "type": "commonjs"
+}

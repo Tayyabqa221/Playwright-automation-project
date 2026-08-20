@@ -1,0 +1,6 @@
+{
+  "src/**/*.{ts}": [
+    "eslint -c src/linters/.eslintrc.js --quiet --cache --fix",
+    "prettier --config src/linters/prettierrc.yml src --write"
+  ]
+}
